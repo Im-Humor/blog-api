@@ -1,0 +1,25 @@
+{
+  "name": "blog-api",
+  "version": "1.0.0",
+  "description": "Blog API for TOP assignment and personal website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Im-Humor/blog-api.git"
+  },
+  "author": "Daniel Morris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Im-Humor/blog-api/issues"
+  },
+  "homepage": "https://github.com/Im-Humor/blog-api#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.1",
+    "jsonwebtoken": "^9.0.2",
+    "nodemon": "^3.0.2"
+  }
+}
