@@ -36,10 +36,13 @@ router.post(
 
 router.get("/posts", authUser(), async (req, res) => {
 	try {
-		const posts = await Post.find({ author: res.locals.user._id });
+		const posts = await Post.find({ author: res.locals.user._id }).sort({
+			date: -1,
+		});
 		res.send(posts);
 	} catch (err) {
 		console.error(err);
+		res.sendStatus(500);
 	}
 });
 
