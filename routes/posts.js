@@ -55,7 +55,21 @@ router.get("/:postId", async (req, res) => {
 	}
 });
 
-router.post("/:postId", async (req, res) => {
+// update post
+router.post("/:postId", authUser(), async (req, res) => {
+	try {
+		const post = await Post.findById(req.params.postId);
+		post.title = req.body.title;
+		post.content = req.body.content;
+		post.save();
+		res.sendStatus(200);
+	} catch (err) {
+		console.error(err);
+		res.sendStatus(500);
+	}
+});
+
+router.post("/:postId/comment", async (req, res) => {
 	try {
 		const post = await Post.findById(req.params.postId);
 		const comment = await Comment.create({
