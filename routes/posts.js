@@ -61,6 +61,11 @@ router.post("/:postId", authUser(), async (req, res) => {
 		const post = await Post.findById(req.params.postId);
 		post.title = req.body.title;
 		post.content = req.body.content;
+		if (req.body.published == "true") {
+			post.published = true;
+		} else if (req.body.published == "false") {
+			post.published = false;
+		}
 		post.save();
 		res.sendStatus(200);
 	} catch (err) {
@@ -69,16 +74,11 @@ router.post("/:postId", authUser(), async (req, res) => {
 	}
 });
 
-router.post("/:postId/comment", async (req, res) => {
+//delete post and comments
+router.delete("/:postId", authUser(), async (req, res) => {
 	try {
-		const post = await Post.findById(req.params.postId);
-		const comment = await Comment.create({
-			author_name: req.body.name,
-			post: req.params.postId,
-			content: req.body.content,
-		});
-		await post.comments.push(comment._id);
-		post.save();
+		await Comment.deleteMany({ post: req.params.postId });
+		await Post.deleteOne({ _id: req.params.postId });
 		res.sendStatus(200);
 	} catch (err) {
 		console.error(err);

@@ -31,6 +31,7 @@ router.post(
 	body("email").notEmpty().isEmail(),
 	checkAlphaNumExists("username"),
 	body("password").notEmpty().isLength({ max: 1000 }),
+	authUser(),
 	user_controller.createPost
 );
 
@@ -40,6 +41,15 @@ router.get("/posts", authUser(), async (req, res) => {
 			date: -1,
 		});
 		res.send(posts);
+	} catch (err) {
+		console.error(err);
+		res.sendStatus(500);
+	}
+});
+
+router.get("/authuser", authUser(), async (req, res) => {
+	try {
+		res.sendStatus(200);
 	} catch (err) {
 		console.error(err);
 		res.sendStatus(500);
