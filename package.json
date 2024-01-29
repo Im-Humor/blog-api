@@ -1,6 +1,9 @@
 {
   "name": "blog-api",
   "version": "1.0.0",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "description": "Blog API for TOP assignment and personal website",
   "main": "app.js",
   "scripts": {
@@ -23,6 +26,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-rate-limit": "^7.1.5",
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.3.0",
