@@ -12,6 +12,12 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+//use cookieParser everywhere
+app.use(cookieParser());
+
+app.set("trust proxy", 3);
+app.get("/ip", (request, response) => response.send(request.ip));
+
 // Set up rate limiter: maximum of twenty requests per minute
 const RateLimit = require("express-rate-limit");
 const limiter = RateLimit({
@@ -45,9 +51,6 @@ main();
 //and application/x-www-form-encoded or whatever
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-//use cookieParser everywhere
-app.use(cookieParser());
 
 //set router middlewares
 app.use("/", indexRouter);

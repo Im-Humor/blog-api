@@ -33,7 +33,9 @@ exports.loginPost = async (req, res) => {
 									res.cookie("access_token", token, {
 										httpOnly: true,
 										sameSite: "None",
-									}).sendStatus(200);
+										domain: "http://localhost:3000",
+									});
+									res.send("");
 								}
 							}
 						);
